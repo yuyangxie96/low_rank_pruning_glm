@@ -138,8 +138,8 @@ class ModelModifier:
         for param in self.model.model.parameters():
             param.requires_grad = False
         #Low-rank settings 
-        fp16           = True
-        layers = self.model.model.layers 
+        fp16  = True
+        layers = self.model.model.layers
         for i in tqdm(candidate_layers_list):
             # layers[i].self_attn.q_proj      = patch_fct(layers[i].self_attn.q_proj, patch_params['self_attn.q_proj'])
             # layers[i].self_attn.k_proj      = patch_fct(layers[i].self_attn.k_proj, patch_params['self_attn.k_proj'])
