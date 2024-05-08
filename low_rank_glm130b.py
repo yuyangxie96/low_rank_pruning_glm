@@ -156,25 +156,17 @@ class ModelModifier:
         lrconfig.save_pretrained(save_dir)
         self.tokenizer.save_pretrained(save_dir)
 
-# %%
 
-# #model_name = "/workspace/yuyang/Llama-2-7b-hf/"
-# #model_name = "/model_share/32b-codev1-240107-llama/"
-# model_name = "/model_share/130b-codev2-240107-0.13-dpo-llama/"
-
-# #output_path = "/workspace/yuyang/Llama-2-7b-hf-test/"
-# #output_path = "/workspace/yuyang/32b-codev1-240107-llama-lasertest/"
-# output_path = "/workspace/yuyang/130b-codev2-240107-0.13-dpo-llama-laser55r100-test/"
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model_path", "-m", type=str, default="/model_share/130b-codev2-240107-0.13-dpo-llama/")
-    parser.add_argument("--output_path", "-o", type=str, default="/workspace/yuyang/130b-codev2-240107-0.13-dpo-llama-lasertest/")
+    parser.add_argument("--model_path", "-m", type=str, default="/model_share/glm/")
+    parser.add_argument("--output_path", "-o", type=str, default="/workspace/glm-lrp/")
     parser.add_argument("--begin_layer", "-b", type=int, default=55)
     parser.add_argument("--rank", "-r", type = int, default = 128)
     args = parser.parse_args()
     GlobalSettings.svd_algo   = 'torch_gpu' #torch_gpu / torch_cpu
-    GlobalSettings.cache_path = '/workspace/yuyang/laserRMT/cache_data/'+args.model_path.split('/')[-2]+'-l'+str(args.begin_layer)+'r'+str(args.rank)+'/'   #Folder to cache data
+    GlobalSettings.cache_path = '/workspace/laserRMT/cache_data/'+args.model_path.split('/')[-2]+'-l'+str(args.begin_layer)+'r'+str(args.rank)+'/'   #Folder to cache data
     num_begin_lowrank_hidden_layers = args.begin_layer
     rank = args.rank
     if not os.path.exists(GlobalSettings.cache_path):
