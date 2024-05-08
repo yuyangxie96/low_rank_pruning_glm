@@ -162,8 +162,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--model_path", "-m", type=str, default="/model_share/glm/")
     parser.add_argument("--output_path", "-o", type=str, default="/workspace/glm-lrp/")
-    parser.add_argument("--begin_layer", "-b", type=int, default=55)
-    parser.add_argument("--rank", "-r", type = int, default = 128)
+    parser.add_argument("--begin_layer", "-b", type=int, default=18)
+    parser.add_argument("--rank", "-r", type = int, default = 500)
     args = parser.parse_args()
     GlobalSettings.svd_algo   = 'torch_gpu' #torch_gpu / torch_cpu
     GlobalSettings.cache_path = '/workspace/laserRMT/cache_data/'+args.model_path.split('/')[-2]+'-l'+str(args.begin_layer)+'r'+str(args.rank)+'/'   #Folder to cache data
